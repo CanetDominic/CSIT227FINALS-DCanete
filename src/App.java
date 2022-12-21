@@ -86,11 +86,11 @@ public class App extends JFrame {
             JOptionPane.showMessageDialog(null, "Enter a name");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Invalid age");
-        } catch (IllegalArgumentException e) {
+          } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Invalid months");
-        } catch (ArithmeticException e) {
+          } catch (ArithmeticException e) {
             JOptionPane.showMessageDialog(null, "Invalid salary");
-        } catch (Exception e) {
+          } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Please select a role");
         }
     }
