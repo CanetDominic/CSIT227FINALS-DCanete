@@ -32,6 +32,7 @@ public class App extends JFrame {
         rbManager.addActionListener(e -> work());
         btnClear.addActionListener(e -> clearing());
         btnLoad.addActionListener(e -> load());
+        btnSayHi.addActionListener(e -> sayHi());
 
     }
 
@@ -127,6 +128,11 @@ public class App extends JFrame {
             JOptionPane.showMessageDialog(null, "Invalid index");
         } catch (IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Index out of bounds");
+        }
+    }
+    public void sayHi(){
+        for(Person person : persons) {
+            System.out.println(person);
         }
     }
 
