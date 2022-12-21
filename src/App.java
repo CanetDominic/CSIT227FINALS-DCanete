@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.io.*;
+import java.lang.invoke.StringConcatException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class App extends JFrame {
         btnSayHi.addActionListener(e -> sayHi());
         btnReward.addActionListener(e -> giveReward());
         taPersons.setEditable(false);
+        btnSavePerson.addActionListener(e -> saveFile());
 
     }
 
@@ -167,6 +170,12 @@ public class App extends JFrame {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.setVisible(true);
 
+    }
+    void saveFile() {
+        try(BufferedWriter file = new BufferedWriter(new FileWriter("persons.txt"))) {
+            file.write(taPersons.getText());
+        } catch (IOException e) {
+        }
     }
 
     public static void main(String[] args) {
