@@ -30,6 +30,7 @@ public class App extends JFrame {
         rbCustomer.addActionListener(e -> buyer());
         rbClerk.addActionListener(e -> work());
         rbManager.addActionListener(e -> work());
+        btnClear.addActionListener(e -> clearing());
     }
 
     void buyer() {
@@ -93,6 +94,12 @@ public class App extends JFrame {
           } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Please select a role");
         }
+    }
+    public void clearing() {
+        tfName.setText("");
+        tfAge.setText("");
+        tfMonths.setText("");
+        tfSalary.setText("");
     }
 
     public static void main(String[] args) {
