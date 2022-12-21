@@ -31,6 +31,8 @@ public class App extends JFrame {
         rbClerk.addActionListener(e -> work());
         rbManager.addActionListener(e -> work());
         btnClear.addActionListener(e -> clearing());
+        btnLoad.addActionListener(e -> load());
+
     }
 
     void buyer() {
@@ -100,6 +102,32 @@ public class App extends JFrame {
         tfAge.setText("");
         tfMonths.setText("");
         tfSalary.setText("");
+    }
+    public void load() {
+        try {
+            int index = Integer.parseInt(tfLoad.getText()) - 1;
+            Person person = persons.get(index);
+            tfName.setText(person.getName());
+            tfAge.setText(String.valueOf(person.getAge()));
+            tfMonths.setText("");
+            tfSalary.setText("");
+            rbCustomer.doClick();
+            if(person instanceof Clerk) {
+                Clerk clerk = (Clerk) person;
+                tfMonths.setText(String.valueOf(clerk.getMonths_worked()));
+                tfSalary.setText(String.valueOf(clerk.getSalary()));
+                rbClerk.doClick();
+            } else if (person instanceof Manager) {
+                Manager manager = (Manager) person;
+                tfMonths.setText(String.valueOf(manager.getMonths_worked()));
+                tfSalary.setText(String.valueOf(manager.getSalary()));
+                rbManager.doClick();
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid index");
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Index out of bounds");
+        }
     }
 
     public static void main(String[] args) {
