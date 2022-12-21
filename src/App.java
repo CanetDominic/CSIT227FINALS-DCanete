@@ -33,7 +33,7 @@ public class App extends JFrame {
         btnClear.addActionListener(e -> clearing());
         btnLoad.addActionListener(e -> load());
         btnSayHi.addActionListener(e -> sayHi());
-
+        btnReward.addActionListener(e -> giveReward());
     }
 
     void buyer() {
@@ -134,6 +134,27 @@ public class App extends JFrame {
         for(Person person : persons) {
             System.out.println(person);
         }
+    }
+    void giveReward(int n) {
+        try {
+            Person person = persons.get(n);
+            if(person instanceof Clerk) {
+                Clerk clerk = (Clerk) person;
+                if(clerk.getMonths_worked() == 0) throw new ArithmeticException();
+                JOptionPane.showMessageDialog(null, "Clerk " + clerk.getName() + " has been rewarded with " + String.format("%.2f", clerk.thirteenmonth()));
+            } else if(person instanceof Manager) {
+                Manager manager = (Manager) person;
+                if(manager.getMonths_worked() == 0) throw new ArithmeticException();
+                JOptionPane.showMessageDialog(null, "Manager " + manager.getName() + " has been rewarded with " + String.format("%.2f", manager.thirteenmonth()));
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (ArithmeticException e) {
+            JOptionPane.showMessageDialog(null, "Invalid months");
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Not an employee");
+        }
+
     }
 
     public static void main(String[] args) {
