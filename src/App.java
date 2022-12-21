@@ -38,6 +38,7 @@ public class App extends JFrame {
         btnReward.addActionListener(e -> giveReward());
         taPersons.setEditable(false);
         btnSavePerson.addActionListener(e -> saveFile());
+        btnLoadPerson.addActionListener(e -> loadFile());
 
     }
 
@@ -175,6 +176,23 @@ public class App extends JFrame {
         try(BufferedWriter file = new BufferedWriter(new FileWriter("persons.txt"))) {
             file.write(taPersons.getText());
         } catch (IOException e) {
+        }
+    }
+    void loadFile() {
+        try(BufferedReader file = new BufferedReader(new FileReader("persons.txt"))) {
+            String str = file.readLine();
+            while(str != null){
+                taPersons.append(str + "\n");
+                str = file.readLine();
+                int num = Integer.parseInt(str.substring(0,1));
+                numPersons = num + 1;
+                System.out.println(num);
+            }
+
+        } catch (IOException e) {
+
+        } catch (NullPointerException e) {
+
         }
     }
 
