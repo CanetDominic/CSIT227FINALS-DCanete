@@ -34,6 +34,8 @@ public class App extends JFrame {
         btnLoad.addActionListener(e -> load());
         btnSayHi.addActionListener(e -> sayHi());
         btnReward.addActionListener(e -> giveReward());
+        taPersons.setEditable(false);
+
     }
 
     void buyer() {
@@ -154,6 +156,16 @@ public class App extends JFrame {
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Not an employee");
         }
+
+    }
+    public static void main(String[] args) {
+        // add here how to make GUI visible
+        App app = new App();
+        app.setTitle("App");
+        app.setContentPane(app.pnlMain);
+        app.setSize(800, 600);
+        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        app.setVisible(true);
 
     }
 
