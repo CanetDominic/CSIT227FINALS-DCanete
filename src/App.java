@@ -42,46 +42,58 @@ public class App extends JFrame {
         tfSalary.setEnabled(true);
     }
 
-    void save() {
-        if (rbCustomer.isSelected()) {
-            String name = tfName.getText();
-            if (name.isBlank()) throw new NullPointerException();
-            int age = Integer.parseInt(tfAge.getText());
-            if (age < 0) throw new NumberFormatException();
-            Person person = new Customer(name, age);
-            persons.add(person);
-            taPersons.append(numPersons + ". Customer - " + person.getName() + " (" + person.getAge() + ")\n");
-            numPersons++;
-        } else if (rbClerk.isSelected()) {
-            String name = tfName.getText();
-            if (name.isBlank()) throw new NullPointerException();
-            int age = Integer.parseInt(tfAge.getText());
-            if (age < 0) throw new NumberFormatException();
-            int months = Integer.parseInt(tfMonths.getText());
-            if (months < 0) throw new IllegalArgumentException();
-            double salary = Double.parseDouble(tfSalary.getText());
-            if (salary < 0) throw new ArithmeticException();
-            Person person = new Clerk(name, age, months, salary);
-            persons.add(person);
-            taPersons.append(numPersons + ". Clerk - " + person.getName() + " (" + person.getAge() + ")\n");
-            numPersons++;
-        } else if (rbManager.isSelected()) {
-            String name = tfName.getText();
-            if (name.isBlank()) throw new NullPointerException();
-            int age = Integer.parseInt(tfAge.getText());
-            if (age < 0) throw new NumberFormatException();
-            int months = Integer.parseInt(tfMonths.getText());
-            if (months < 0) throw new IllegalArgumentException();
-            double salary = Double.parseDouble(tfSalary.getText());
-            if (salary < 0) throw new ArithmeticException();
-            Person person = new Manager(name, age, months, salary);
-            persons.add(person);
-            taPersons.append(numPersons + ". Manager - " + person.getName() + " (" + person.getAge() + ")\n");
-            numPersons++;
+    public void save() {
+        try {
+            if(rbCustomer.isSelected()) {
+                String name = tfName.getText();
+                if(name.isBlank()) throw new NullPointerException();
+                int age = Integer.parseInt(tfAge.getText());
+                if(age < 0) throw new NumberFormatException();
+                Person person = new Customer(name, age);
+                persons.add(person);
+                taPersons.append(numPersons + ". Customer - " + person.getName() + " (" + person.getAge() + ")\n");
+                numPersons++;
+            } else if(rbClerk.isSelected()) {
+                String name = tfName.getText();
+                if(name.isBlank()) throw new NullPointerException();
+                int age = Integer.parseInt(tfAge.getText());
+                if(age < 0) throw new NumberFormatException();
+                int months = Integer.parseInt(tfMonths.getText());
+                if(months < 0) throw new IllegalArgumentException();
+                double salary = Double.parseDouble(tfSalary.getText());
+                if(salary < 0) throw new ArithmeticException();
+                Person person = new Clerk(name, age, months, salary);
+                persons.add(person);
+                taPersons.append(numPersons + ". Clerk - " + person.getName() + " (" + person.getAge() + ")\n");
+                numPersons++;
+            } else if(rbManager.isSelected()) {
+                String name = tfName.getText();
+                if(name.isBlank()) throw new NullPointerException();
+                int age = Integer.parseInt(tfAge.getText());
+                if(age < 0) throw new NumberFormatException();
+                int months = Integer.parseInt(tfMonths.getText());
+                if(months < 0) throw new IllegalArgumentException();
+                double salary = Double.parseDouble(tfSalary.getText());
+                if(salary < 0) throw new ArithmeticException();
+                Person person = new Manager(name, age, months, salary);
+                persons.add(person);
+                taPersons.append(numPersons + ". Manager - " + person.getName() + " (" + person.getAge() + ")\n");
+                numPersons++;
+            } else {
+                throw new Exception();
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Enter a name");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid age");
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Invalid months");
+        } catch (ArithmeticException e) {
+            JOptionPane.showMessageDialog(null, "Invalid salary");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Please select a role");
         }
     }
-
-}
 
     public static void main(String[] args) {
         // add here how to make GUI visible
